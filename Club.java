@@ -8,7 +8,6 @@ import java.util.ArrayList;
  */
 public class Club
 {
-    // Define any necessary fields here ...
     // ArrayList para los miembros.
     private ArrayList<Membership> socios;
     
@@ -17,7 +16,6 @@ public class Club
      */
     public Club()
     {
-        // Initialise any fields here ...
         socios = new ArrayList<Membership>();
     }
 
@@ -36,6 +34,6 @@ public class Club
      */
     public int numberOfMembers()
     {
-        return 0;
+        return socios.size();
     }
 }
