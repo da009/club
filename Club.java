@@ -77,15 +77,17 @@ public class Club
      */
     public void purge(int month, int year)
     {
+        int index = 0;
         if (month >= 1 && month <= 12)
         {
-            for (Membership socio : socios)
+            while (socios.size() > index)
             {
-                if (month == socio.getMonth() && year == socio.getYear())
+                if (month == socios.get(index).getMonth() && year == socios.get(index).getYear())
                 {
-                    bajas.add(socio);
-                    socios.remove(socio);
+                    bajas.add(socios.get(index));
+                    socios.remove(socios.get(index));
                 }
+                index++;
             }
         }
         else
