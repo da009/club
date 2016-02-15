@@ -10,6 +10,8 @@ public class Club
 {
     // ArrayList para los miembros.
     private ArrayList<Membership> socios;
+    // ArrayList para los miembros dados de baja.
+    private ArrayList<Membership> bajas;
     
     /**
      * Constructor for objects of class Club
@@ -17,6 +19,7 @@ public class Club
     public Club()
     {
         socios = new ArrayList<Membership>();
+        bajas = new ArrayList<Membership>();
     }
 
     /**
@@ -47,11 +50,11 @@ public class Club
     public int joinedMonth(int mes)
     {
         int cont = 0;
-        if (mes <= 1 && mes >= 12)
+        if (mes >= 1 && mes <= 12)
         {
-            for (Membership socios : socios)
+            for (Membership socio : socios)
             {
-                if (mes == socios.getMonth())
+                if (mes == socio.getMonth())
                 {
                     cont ++;
                 }
@@ -61,10 +64,33 @@ public class Club
                 }
             }
         }
+        return cont;
+    }
+    
+    /** 
+     * Todos los socios que se han dado de alta un determinado mes de un determinado año se
+     * dan de baja. En caso de que el parametro month contenga un valor no valido se muestra 
+     * por pantalla el error.
+     * @param month El mes en el que estamos interesados
+     * @param year El año en el que estamos interesados
+     * @return Una coleccion con los socios que se han dado de baja del club
+     */
+    public void purge(int month, int year)
+    {
+        if (month >= 1 && month <= 12)
+        {
+            for (Membership socio : socios)
+            {
+                if (month == socio.getMonth() && year == socio.getYear())
+                {
+                    bajas.add(socio);
+                    socios.remove(socio);
+                }
+            }
+        }
         else
         {
             System.out.println("El valor introducido para el mes no es valido");
         }
-        return cont;
     }
 }
